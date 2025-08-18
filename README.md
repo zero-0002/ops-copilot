@@ -35,11 +35,11 @@ Operasyon ekiplerinin **doğal dilde** (TR/EN) veri talebi yazdığı; **cache �
 ## Mimari (özet)
 
 ```
-![Mimari Diyagramı](docs/Agentic Workflow.png)
+![Agentic Workflow](docs/Agentic Workflow.png)
 
 ```
 
-**Detay**: `docs/architecture.md` ve `docs/prompt_flow.md` (önerilen).
+**Detay**: `docs/Agentic Workflow.png` ve `docs/prompt_flow.md` (önerilen).
 
 ---
 

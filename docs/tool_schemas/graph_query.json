@@ -1,0 +1,54 @@
+{
+  "type": "function",
+  "function": {
+    "name": "graph_query",
+    "description": "NL→SQL graph orkestratörüyle soruyu çözer; uygun tabloyu, SQL'i ve satır önizlemesini üretir.",
+    "parameters": {
+      "properties": {
+        "question": {
+          "description": "Kullanıcının doğal dilde sorusu.",
+          "title": "Question",
+          "type": "string"
+        },
+        "preview_rows": {
+          "default": 100,
+          "description": "Önizleme olarak döndürülecek satır adedi.",
+          "maximum": 2000,
+          "minimum": 1,
+          "title": "Preview Rows",
+          "type": "integer"
+        },
+        "return_rows": {
+          "default": true,
+          "description": "Satır önizlemesini döndür.",
+          "title": "Return Rows",
+          "type": "boolean"
+        },
+        "return_chart": {
+          "default": false,
+          "description": "Grafik spec (varsa) döndür.",
+          "title": "Return Chart",
+          "type": "boolean"
+        },
+        "session_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "İstemci oturum ID (izleme için).",
+          "title": "Session Id"
+        }
+      },
+      "required": [
+        "question"
+      ],
+      "title": "GraphQueryParams",
+      "type": "object"
+    }
+  }
+}

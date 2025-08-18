@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: thy-redis
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    container_name: thy-api
+    env_file: .env
+    environment:
+      REDIS_URL: redis://redis:6379
+      RETRIEVER_SEED_JSONL: ./app/data/approved_seeds.jsonl
+    depends_on:
+      - redis
+    volumes:
+      - ./:/app
+    command: >
+      bash -lc "uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload"
+    ports:
+      - "8000:8000"
+
+  ui:
+    build: .
+    container_name: thy-ui
+    env_file: .env
+    environment:
+      API_BASE_URL: http://api:8000
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+    depends_on:
+      - api
+    volumes:
+      - ./:/app
+    command: >
+      bash -lc "streamlit run ui/streamlit_app.py --server.port 8501 --server.address 0.0.0.0"
+    ports:
+      - "8501:8501"

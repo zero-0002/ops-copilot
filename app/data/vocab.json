@@ -1,0 +1,489 @@
+{
+  "generated_at": 1755341819,
+  "tables": {
+    "complaints": {
+      "categoricals": {
+        "category": {
+          "uniq": 5,
+          "values": [
+            "delay",
+            "other",
+            "baggage",
+            "service",
+            "seat"
+          ]
+        },
+        "status": {
+          "uniq": 3,
+          "values": [
+            "pending",
+            "resolved",
+            "open"
+          ]
+        },
+        "created_at": {
+          "uniq": 59,
+          "values": [
+            "2025-07-03",
+            "2025-06-18",
+            "2025-08-13",
+            "2025-08-01",
+            "2025-07-22",
+            "2025-07-31",
+            "2025-07-30",
+            "2025-07-01",
+            "2025-07-09",
+            "2025-06-23",
+            "2025-08-03",
+            "2025-07-29",
+            "2025-08-05",
+            "2025-07-06",
+            "2025-07-14",
+            "2025-07-17",
+            "2025-08-14",
+            "2025-06-27",
+            "2025-07-07",
+            "2025-08-07",
+            "2025-08-08",
+            "2025-06-30",
+            "2025-06-22",
+            "2025-06-24",
+            "2025-08-10",
+            "2025-07-18",
+            "2025-08-04",
+            "2025-07-23",
+            "2025-07-27",
+            "2025-07-11"
+          ]
+        }
+      },
+      "id_preview": {
+        "complaint_id": {
+          "uniq": 400,
+          "examples": [
+            "ff866390",
+            "fdd27bca",
+            "fd6fa3b4",
+            "fcd10b6a",
+            "fc20e3b9",
+            "fb00bfd2",
+            "fa600f9a",
+            "fa18be4e",
+            "f9be1f87",
+            "f985e5ef",
+            "f91f38c9",
+            "f901dabd",
+            "f89bab64",
+            "f83fa322",
+            "f76c4b6a",
+            "f5ded22e",
+            "f55a53da",
+            "f5128a11",
+            "f4f72994",
+            "f4bfcf7e"
+          ]
+        },
+        "flight_number": {
+          "uniq": 160,
+          "examples": [
+            "TK198",
+            "TK838",
+            "TK250",
+            "TK243",
+            "TK848",
+            "TK745",
+            "TK507",
+            "TK294",
+            "TK138",
+            "TK655",
+            "TK385",
+            "TK259",
+            "TK145",
+            "TK870",
+            "TK820",
+            "TK811",
+            "TK765",
+            "TK744",
+            "TK506",
+            "TK499"
+          ]
+        },
+        "customer_id": {
+          "uniq": 399,
+          "examples": [
+            "C59416",
+            "C99822",
+            "C99393",
+            "C99388",
+            "C99099",
+            "C99087",
+            "C99022",
+            "C98668",
+            "C98652",
+            "C98503",
+            "C98204",
+            "C97896",
+            "C97128",
+            "C96836",
+            "C96661",
+            "C96516",
+            "C95553",
+            "C95530",
+            "C95150",
+            "C95090"
+          ]
+        }
+      },
+      "date_cols": {
+        "created_at": {
+          "min": "2025-06-17",
+          "max": "2025-08-15"
+        }
+      },
+      "sample": [
+        {
+          "complaint_id": "4dc4faa2",
+          "flight_number": "TK140",
+          "customer_id": "C87258",
+          "category": "delay",
+          "status": "pending",
+          "created_at": "2025-07-03"
+        },
+        {
+          "complaint_id": "34841813",
+          "flight_number": "TK877",
+          "customer_id": "C43756",
+          "category": "other",
+          "status": "resolved",
+          "created_at": "2025-06-18"
+        },
+        {
+          "complaint_id": "ae8cca3b",
+          "flight_number": "TK162",
+          "customer_id": "C63331",
+          "category": "delay",
+          "status": "resolved",
+          "created_at": "2025-08-13"
+        }
+      ],
+      "total_rows": 400
+    },
+    "flights": {
+      "categoricals": {
+        "aircraft_type": {
+          "uniq": 4,
+          "values": [
+            "A320",
+            "B737",
+            "A321",
+            "A330"
+          ]
+        },
+        "crew_issues": {
+          "uniq": 2,
+          "values": [
+            0,
+            1
+          ]
+        },
+        "weather_impact": {
+          "uniq": 2,
+          "values": [
+            0,
+            1
+          ]
+        }
+      },
+      "id_preview": {
+        "flight_number": {
+          "uniq": 182,
+          "examples": [
+            "TK838",
+            "TK294",
+            "TK198",
+            "TK848",
+            "TK745",
+            "TK744",
+            "TK671",
+            "TK655",
+            "TK587",
+            "TK581",
+            "TK506",
+            "TK497",
+            "TK477",
+            "TK423",
+            "TK250",
+            "TK990",
+            "TK988",
+            "TK987",
+            "TK982",
+            "TK976"
+          ]
+        },
+        "departure_time": {
+          "uniq": 196,
+          "examples": [
+            "2025-08-10T04:00:00",
+            "2025-07-31T12:15:00",
+            "2025-07-10T05:45:00",
+            "2025-07-08T05:45:00",
+            "2025-08-15T21:30:00",
+            "2025-08-15T20:45:00",
+            "2025-08-15T18:15:00",
+            "2025-08-15T16:30:00",
+            "2025-08-15T14:00:00",
+            "2025-08-15T13:00:00",
+            "2025-08-14T16:45:00",
+            "2025-08-14T13:00:00",
+            "2025-08-14T09:00:00",
+            "2025-08-13T09:15:00",
+            "2025-08-11T23:00:00",
+            "2025-08-11T14:00:00",
+            "2025-08-11T11:15:00",
+            "2025-08-10T21:45:00",
+            "2025-08-10T17:45:00",
+            "2025-08-10T12:45:00"
+          ]
+        },
+        "delay_minutes": {
+          "uniq": 52,
+          "examples": [
+            0,
+            44,
+            21,
+            19,
+            5,
+            2,
+            54,
+            51,
+            23,
+            22,
+            18,
+            62,
+            58,
+            55,
+            50,
+            49,
+            37,
+            31,
+            29,
+            25
+          ]
+        }
+      },
+      "date_cols": {
+        "departure_time": {
+          "min": "2025-06-17T00:45:00",
+          "max": "2025-08-15T21:30:00"
+        }
+      },
+      "sample": [
+        {
+          "flight_number": "TK202",
+          "departure_time": "2025-06-25T14:30:00",
+          "delay_minutes": 0,
+          "aircraft_type": "A320",
+          "crew_issues": 0,
+          "weather_impact": 0
+        },
+        {
+          "flight_number": "TK314",
+          "departure_time": "2025-08-05T10:45:00",
+          "delay_minutes": 31,
+          "aircraft_type": "A320",
+          "crew_issues": 1,
+          "weather_impact": 0
+        },
+        {
+          "flight_number": "TK513",
+          "departure_time": "2025-07-09T01:45:00",
+          "delay_minutes": 0,
+          "aircraft_type": "B737",
+          "crew_issues": 0,
+          "weather_impact": 0
+        }
+      ],
+      "total_rows": 200
+    },
+    "refunds": {
+      "categoricals": {
+        "cancel_reason": {
+          "uniq": 5,
+          "values": [
+            "schedule",
+            "personal",
+            "other",
+            "weather",
+            "crew"
+          ]
+        },
+        "refund_status": {
+          "uniq": 3,
+          "values": [
+            "approved",
+            "rejected",
+            "processing"
+          ]
+        }
+      },
+      "id_preview": {
+        "ticket_id": {
+          "uniq": 250,
+          "examples": [
+            "fedec3f7",
+            "feb43d94",
+            "fe8a1acd",
+            "fd1cfd49",
+            "fa2a0ba8",
+            "f8f427a4",
+            "f6dc2214",
+            "f5f5be5e",
+            "f3792dd0",
+            "f1859946",
+            "f177f4a0",
+            "f0eaa266",
+            "f06fe181",
+            "ef8866db",
+            "ef8223bb",
+            "eeb257df",
+            "eea42ab3",
+            "ed2adfb9",
+            "eb1c0219",
+            "ea60875f"
+          ]
+        },
+        "flight_number": {
+          "uniq": 138,
+          "examples": [
+            "TK294",
+            "TK824",
+            "TK524",
+            "TK497",
+            "TK250",
+            "TK198",
+            "TK174",
+            "TK982",
+            "TK877",
+            "TK831",
+            "TK752",
+            "TK744",
+            "TK736",
+            "TK701",
+            "TK697",
+            "TK671",
+            "TK661",
+            "TK599",
+            "TK587",
+            "TK500"
+          ]
+        },
+        "customer_id": {
+          "uniq": 250,
+          "examples": [
+            "C99678",
+            "C99285",
+            "C98896",
+            "C98330",
+            "C98229",
+            "C97893",
+            "C97697",
+            "C97440",
+            "C97265",
+            "C97178",
+            "C96511",
+            "C96156",
+            "C95867",
+            "C95716",
+            "C95160",
+            "C95091",
+            "C95076",
+            "C95029",
+            "C94774",
+            "C94388"
+          ]
+        }
+      },
+      "date_cols": {},
+      "sample": [
+        {
+          "ticket_id": "65a9a266",
+          "flight_number": "TK497",
+          "cancel_reason": "schedule",
+          "refund_status": "approved",
+          "customer_id": "C27611"
+        },
+        {
+          "ticket_id": "2e506b31",
+          "flight_number": "TK198",
+          "cancel_reason": "personal",
+          "refund_status": "rejected",
+          "customer_id": "C59847"
+        },
+        {
+          "ticket_id": "17266179",
+          "flight_number": "TK415",
+          "cancel_reason": "other",
+          "refund_status": "rejected",
+          "customer_id": "C37810"
+        }
+      ],
+      "total_rows": 250
+    },
+    "weather": {
+      "categoricals": {
+        "condition": {
+          "uniq": 4,
+          "values": [
+            "clear",
+            "storm",
+            "rain",
+            "fog"
+          ]
+        }
+      },
+      "id_preview": {
+        "flight_number": {
+          "uniq": 182,
+          "examples": [
+            "TK990",
+            "TK988",
+            "TK987",
+            "TK982",
+            "TK976",
+            "TK975",
+            "TK970",
+            "TK955",
+            "TK953",
+            "TK952",
+            "TK943",
+            "TK927",
+            "TK924",
+            "TK921",
+            "TK920",
+            "TK919",
+            "TK918",
+            "TK916",
+            "TK910",
+            "TK897"
+          ]
+        }
+      },
+      "date_cols": {},
+      "sample": [
+        {
+          "flight_number": "TK202",
+          "condition": "clear"
+        },
+        {
+          "flight_number": "TK314",
+          "condition": "storm"
+        },
+        {
+          "flight_number": "TK513",
+          "condition": "clear"
+        }
+      ],
+      "total_rows": 182
+    }
+  }
+}

@@ -1,0 +1,57 @@
+
+rapidfuzz
+# ============================
+# Core LLM & Agent Frameworks
+# ============================
+langchain
+langgraph
+langchain_community
+langchain_openai
+langchain-core
+
+# ============================
+# LLM API Clients
+# ============================
+openai
+anthropic
+
+# ============================
+# Data Processing & Retrieval
+# ============================
+pandas
+faiss-cpu
+rank-bm25
+# ============================
+# Backend & API
+# ============================
+fastapi
+uvicorn
+sqlalchemy
+
+# ============================
+# Databases
+# ============================
+psycopg2-binary
+sqlite-utils
+
+# ============================
+# Memory / State Management
+# ============================
+redis
+
+# ============================
+# Environment Management
+# ============================
+python-dotenv
+pydantic
+pydantic-settings
+
+# ============================
+# Optional for UI
+# ============================
+streamlit
+
+# ============================
+# Testing
+# ============================
+pytest

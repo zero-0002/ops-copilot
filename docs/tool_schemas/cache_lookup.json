@@ -1,0 +1,82 @@
+{
+  "type": "function",
+  "function": {
+    "name": "cache_lookup",
+    "description": "Önbellekten (onaylı/seed etiketli) mevcut SQL planını ve örnek satırları döndürür; hızlı cevap için.",
+    "parameters": {
+      "properties": {
+        "question": {
+          "description": "Kullanıcının doğal dilde sorusu.",
+          "title": "Question",
+          "type": "string"
+        },
+        "top_k": {
+          "default": 8,
+          "description": "Cache içerisinde bakılacak maksimum aday sayısı.",
+          "maximum": 50,
+          "minimum": 1,
+          "title": "Top K",
+          "type": "integer"
+        },
+        "threshold": {
+          "default": 0.85,
+          "description": "Cache eşik skoru.",
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Threshold",
+          "type": "number"
+        },
+        "preview_rows": {
+          "default": 100,
+          "description": "Önizleme olarak döndürülecek satır adedi.",
+          "maximum": 2000,
+          "minimum": 1,
+          "title": "Preview Rows",
+          "type": "integer"
+        },
+        "return_rows": {
+          "default": true,
+          "description": "Satır önizlemesini döndür.",
+          "title": "Return Rows",
+          "type": "boolean"
+        },
+        "return_chart": {
+          "default": false,
+          "description": "Grafik spec (varsa) döndür.",
+          "title": "Return Chart",
+          "type": "boolean"
+        },
+        "prefer_tag": {
+          "default": "approved|seed",
+          "description": "Tag filtre (örn. approved|seed).",
+          "title": "Prefer Tag",
+          "type": "string"
+        },
+        "cache_only": {
+          "default": true,
+          "description": "True ise cache miss olursa graph'a düşme.",
+          "title": "Cache Only",
+          "type": "boolean"
+        },
+        "session_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "İstemci oturum ID (izleme için).",
+          "title": "Session Id"
+        }
+      },
+      "required": [
+        "question"
+      ],
+      "title": "CacheLookupParams",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	normalize(normalize)
+	policy_gate(policy_gate)
+	policy_rewrite(policy_rewrite)
+	web_policy(web_policy)
+	hybrid_fork(hybrid_fork)
+	router(router)
+	flights(flights)
+	complaints(complaints)
+	refunds(refunds)
+	weather(weather)
+	filter_check(filter_check)
+	fuzz_filter(fuzz_filter)
+	query_generator(query_generator)
+	query_validation(query_validation)
+	execute_sql(execute_sql)
+	policy_safety(policy_safety)
+	join(join)
+	synthesize(synthesize)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> normalize;
+	complaints --> filter_check;
+	execute_sql --> policy_safety;
+	filter_check -. &nbsp;yes&nbsp; .-> fuzz_filter;
+	filter_check -. &nbsp;no&nbsp; .-> query_generator;
+	flights --> filter_check;
+	fuzz_filter --> query_generator;
+	hybrid_fork --> policy_rewrite;
+	hybrid_fork --> router;
+	join -. &nbsp;go&nbsp; .-> synthesize;
+	normalize --> policy_gate;
+	policy_gate -. &nbsp;hybrid&nbsp; .-> hybrid_fork;
+	policy_gate -. &nbsp;web&nbsp; .-> policy_rewrite;
+	policy_gate -. &nbsp;sql&nbsp; .-> router;
+	policy_rewrite --> web_policy;
+	policy_safety --> join;
+	query_generator --> query_validation;
+	query_validation --> execute_sql;
+	refunds --> filter_check;
+	router -.-> complaints;
+	router -.-> flights;
+	router -.-> refunds;
+	router -.-> weather;
+	weather --> filter_check;
+	web_policy --> join;
+	synthesize --> __end__;
+	join -. &nbsp;wait&nbsp; .-> join;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

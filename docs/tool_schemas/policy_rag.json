@@ -1,0 +1,48 @@
+{
+  "type": "function",
+  "function": {
+    "name": "policy_rag",
+    "description": "Politika/knowledge kaynakları (PDF/CSV/Index) üzerinde RAG ile kısa metin yanıtı ve gerekirse kaynaklar döndürür.",
+    "parameters": {
+      "properties": {
+        "question": {
+          "description": "Politika/knowledge kaynaklarına yönelik soru.",
+          "title": "Question",
+          "type": "string"
+        },
+        "top_k": {
+          "default": 6,
+          "description": "En iyi kaç kaynağı değerlendirileceği.",
+          "maximum": 50,
+          "minimum": 1,
+          "title": "Top K",
+          "type": "integer"
+        },
+        "return_citations": {
+          "default": true,
+          "description": "Kaynak/citation listesi döndür.",
+          "title": "Return Citations",
+          "type": "boolean"
+        },
+        "session_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "İstemci oturum ID (izleme için).",
+          "title": "Session Id"
+        }
+      },
+      "required": [
+        "question"
+      ],
+      "title": "PolicyRagParams",
+      "type": "object"
+    }
+  }
+}

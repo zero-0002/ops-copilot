@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: THY Ops Copilot API
+  version: 0.5.0
+paths:
+  /healthz:
+    get:
+      summary: Healthz
+      operationId: healthz_healthz_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /ask_unified:
+    post:
+      summary: Ask Unified
+      operationId: ask_unified_ask_unified_post
+      parameters:
+      - name: x-session-id
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Session-Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AskUnifiedRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AskUnifiedResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    AskUnifiedRequest:
+      properties:
+        question:
+          type: string
+          title: Question
+          example: Son 7 günde ortalama gecikme ve fazla bagaj politikası nedir?
+        preview_rows:
+          type: integer
+          title: Preview Rows
+          default: 100
+        return_rows:
+          type: boolean
+          title: Return Rows
+          default: true
+        return_chart:
+          type: boolean
+          title: Return Chart
+          default: true
+        top_k:
+          type: integer
+          title: Top K
+          default: 8
+        threshold:
+          type: number
+          title: Threshold
+          default: 0.85
+      type: object
+      required:
+      - question
+      title: AskUnifiedRequest
+    AskUnifiedResponse:
+      properties:
+        used_cache:
+          type: boolean
+          title: Used Cache
+        use_web:
+          type: boolean
+          title: Use Web
+        want_sql:
+          type: boolean
+          title: Want Sql
+        final_answer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Final Answer
+          default: ''
+        analysis_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Analysis Text
+        headline_metrics:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Headline Metrics
+        vega_lite_spec:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Vega Lite Spec
+        sql:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sql
+        rows:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Rows
+        columns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Columns
+        citations:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Citations
+        execution_ms:
+          type: integer
+          title: Execution Ms
+        source:
+          type: string
+          title: Source
+      type: object
+      required:
+      - used_cache
+      - use_web
+      - want_sql
+      - execution_ms
+      - source
+      title: AskUnifiedResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

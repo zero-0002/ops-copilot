@@ -1,0 +1,43 @@
+# --- secrets / env ---
+.env
+.env.local
+
+# --- Python derlemeleri ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.coverage
+.coverage.*
+.pytest_cache/
+
+# --- sanal ortamlar ---
+.venv/
+
+
+# --- editors ---
+.vscode/
+
+
+# --- OS dosyaları ---
+.DS_Store
+
+
+# --- data/artifacts ---
+app/data/*.db
+app/data/*.sqlite
+app/data/*index*/
+app/data/*.faiss
+app/data/*.parquet
+logs/
+
+
+# app/data/*.pdf
+# app/data/*.csv
+
+# Streamlit local ayarları 
+.streamlit/
+
+

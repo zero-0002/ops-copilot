@@ -51,8 +51,7 @@ Doğal dille operasyon raporlama: Kullanıcı prompt’larını anlayıp SQL Gra
 ## Mimari (özet)
 
 ```
-<img width="1088" height="2209" alt="image" src="https://github.com/user-attachments/assets/22430221-f1bf-4f73-9a4a-0b6df9e817f3" />
-
+**docs/Agentic Workflow.png**
 
 ```
 

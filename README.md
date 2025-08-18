@@ -193,28 +193,6 @@ POLICY_INDEX_DIR=app/data/policy_index
 }
 ```
 
-**Tool schema** örnekleri (yönerge amaçlı):
-
-```yaml
-# reports-mcp (örnek)
-name: reports-mcp
-functions:
-  - name: flight_status
-    description: Return flight performance metrics
-    parameters:
-      type: object
-      properties:
-        flight_number: { type: string }
-      required: [flight_number]
-  - name: complaints
-    description: Return complaint stats
-    parameters:
-      type: object
-      properties:
-        window_days: { type: integer, default: 30 }
-```
-
----
 
 ## Prompt İşleme Adımları
 

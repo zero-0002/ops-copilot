@@ -236,7 +236,7 @@ Agentik akış (LangGraph):
 14. **synthesize** → SQL JSON + Policy → **tek, kısa TR cevap**.
 
 > **Domain guard örneği**: “İptaller” sorularında **`refunds.cancel_reason='weather'` + `flights.departure_time`** ile gün/hafta gruplama; `delay_minutes`/`weather_impact` ile iptal çıkarımı **yapma**.
-
+> SQL LANGRAPH Akış mimarisi docs/sql_langraph.txt
 ---
 
 ## UI Özeti

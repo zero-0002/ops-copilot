@@ -1,6 +1,26 @@
 # THY Ops Copilot ✈️ — Agentic AI Case Study
 
-Operasyon ekiplerinin **doğal dilde** (TR/EN) veri talebi yazdığı; **cache → graph → policy RAG** orkestrasyonuyla **SQL sorgusu / tablo / grafik** veya **politika metni** üreten bir *Agentic AI* demo sistemi.
+Doğal dille operasyon raporlama: Kullanıcı prompt’larını anlayıp SQL Graph Orchestrator ile sorgu üretir, cache’ten onaylı planları anında döndürür, Policy RAG ile şirket politikalarını özetler ve tek birleştirilmiş yanıt verir. UI: Streamlit, API: FastAPI.
+
+## Özellikler
+
+🔀 Agentic Orkestrasyon (LangGraph) — tablo seçimi → SQL üretimi → satır önizlemesi
+
+⚡ Önbellek (Redis) — onaylı/seed etiketli sorgu planı + örnek satırlar → anında cevap
+
+📄 Policy RAG — PDF/CSV’den kısa politika cevabı + (opsiyonel) kaynaklar
+
+🧠 Sentezleyici — SQL verisi ve/veya policy metni → tek Türkçe yanıt (gerekirse grafik spec)
+
+💬 Streamlit Chat — Quick Analysis butonları, tablo/SQL/Kaynaklar sekmeleri, son 3 mesaj hafızası
+
+🧩 OpenAPI ve Tool Schemas — /openapi.json; ayrıca docs/tool_schemas.(json|yaml)
+
+## Mimari & Akış
+
+Genel mimari ve modüller: bkz. docs/Agentic Workflow.png
+
+Prompt/graph akışı: bkz. docs/prompt_flow.md
 
 ---
 
@@ -9,7 +29,6 @@ Operasyon ekiplerinin **doğal dilde** (TR/EN) veri talebi yazdığı; **cache �
 * [Özellikler](#özellikler)
 * [Mimari (özet)](#mimari-özet)
 * [Proje Yapısı](#proje-yapısı)
-* [Hızlı Başlangıç (Docker Compose)](#hızlı-başlangıç-docker-compose)
 * [Lokal Geliştirme (Python)](#lokal-geliştirme-python)
 * [Ortam Değişkenleri](#ortam-değişkenleri)
 * [OpenAPI & Tool Schemas](#openapi--tool-schemas)
@@ -35,7 +54,7 @@ Operasyon ekiplerinin **doğal dilde** (TR/EN) veri talebi yazdığı; **cache �
 ## Mimari (özet)
 
 ```
-![Agentic Workflow](docs/Agentic Workflow.png)
+![Agentic Workflow](<docs/Agentic Workflow.png>)
 
 ```
 
@@ -92,8 +111,6 @@ docker logs -f thy-ui
 
 * UI: `http://localhost:8501`
 * API: `http://localhost:8000/docs` (Swagger UI)
-
-> **Redis port çakışması** yaşıyorsanız, `redis` servisini sadece iç ağda kullanın (compose’ta `ports:` bölümünü kaldırın) ve `REDIS_URL=redis://thy-redis:6379/0` olarak ayarlayın.
 
 ---
 

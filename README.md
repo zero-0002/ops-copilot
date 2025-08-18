@@ -2,6 +2,27 @@
 
 Doğal dille operasyon raporlama: Kullanıcı prompt’larını anlayıp SQL Graph Orchestrator ile sorgu üretir, cache’ten onaylı planları anında döndürür, Policy RAG ile şirket politikalarını özetler ve tek birleştirilmiş yanıt verir. UI: Streamlit, API: FastAPI.
 
+
+---
+
+## İçindekiler
+
+* [Özellikler](#özellikler)
+* [Mimari (özet)](#mimari-özet)
+* [📚 Documentation]
+* [Proje Yapısı](#proje-yapısı)
+* [Lokal Geliştirme (Python)](#lokal-geliştirme-python)
+* [Ortam Değişkenleri](#ortam-değişkenleri)
+* [OpenAPI & Tool Schemas](#openapi--tool-schemas)
+* [Prompt İşleme Adımları](#prompt-i̇şleme-adımları)
+* [UI Özeti](#ui-özeti)
+* [Smoke Test](#smoke-test)
+* [UI Ozellikleri]
+* [Lisans / Notlar](#lisans--notlar)
+
+
+---
+
 ## Özellikler
 
 🔀 Agentic Orkestrasyon (LangGraph) — tablo seçimi → SQL üretimi → satır önizlemesi
@@ -16,31 +37,7 @@ Doğal dille operasyon raporlama: Kullanıcı prompt’larını anlayıp SQL Gra
 
 🧩 OpenAPI ve Tool Schemas — /openapi.json; ayrıca docs/tool_schemas.(json|yaml)
 
-## Mimari & Akış
-
-Genel mimari ve modüller: bkz. docs/Agentic Workflow.png
-
-Prompt/graph akışı: bkz. docs/prompt_flow.md
-
----
-
-## İçindekiler
-
-* [Özellikler](#özellikler)
-* [Mimari (özet)](#mimari-özet)
-* [Proje Yapısı](#proje-yapısı)
-* [Lokal Geliştirme (Python)](#lokal-geliştirme-python)
-* [Ortam Değişkenleri](#ortam-değişkenleri)
-* [OpenAPI & Tool Schemas](#openapi--tool-schemas)
-* [Prompt İşleme Adımları](#prompt-i̇şleme-adımları)
-* [UI Özeti](#ui-özeti)
-* [Smoke Test](#smoke-test)
-* [Lisans / Notlar](#lisans--notlar)
-
----
-
-## Özellikler
-
+### Özellikler
 * **Cache-first**: Onaylı/`seed` etiketli hazır SQL planlarını ve örnek satırları **milisaniyede** döndürür.
 * **Graph fallback**: Cache miss olursa **LangGraph** tabanlı NL→SQL orkestratörü devreye girer.
 * **Policy RAG**: CSV/PDF politikalarından kısa metin yanıt + kaynaklar.
@@ -54,13 +51,37 @@ Prompt/graph akışı: bkz. docs/prompt_flow.md
 ## Mimari (özet)
 
 ```
-![Agentic Workflow](<docs/Agentic Workflow.png>)
+<img width="1088" height="2209" alt="image" src="https://github.com/user-attachments/assets/22430221-f1bf-4f73-9a4a-0b6df9e817f3" />
+
 
 ```
 
 **Detay**: `docs/Agentic Workflow.png` ve `docs/prompt_flow.md` (önerilen).
 
 ---
+
+## 📚 Documentation
+
+Tüm mimari açıklamalar ve Tool Schema örnekleri repoda **`docs/`** altında tutulur.
+
+- **Mimari (şema + açıklama metni)**
+  - [docs/agentic-workflow](docs/agentic-workflow)
+  - [docs/prompt_flow.md](docs/prompt_flow.md)
+
+
+- **Tool schema örnekleri**
+  - Tool bazlı JSON’lar (`docs/tool_schemas/` dizini):  
+    - [docs/tool_schemas/cache_lookup.json](docs/tool_schemas/cache_lookup.jsonn)  
+    - [docs/tool_schemas/graph_query.json](docs/tool_schemas/graph_query.json)  
+    - [docs/tool_schemas/policy_rag.json](docs/tool_schemas/policy_rag.json)
+
+- **OpenAPI (FastAPI)**
+  - [docs/openapi.json](docs/openapi.json)  
+  - [docs/openapi.yaml](docs/openapi.yaml)
+
+- **Çalıştırma talimatları**
+  - [docs/README_RUN.md](docs/README_RUN.md)
+
 
 ## Proje Yapısı
 
@@ -192,7 +213,21 @@ POLICY_INDEX_DIR=app/data/policy_index
   "citations": [{"title":"THY Politika PDF","url":"..."}]
 }
 ```
+## Protocols & Interop
 
+**UI ⇄ API: Streamlit → FastAPI /ask_unified**
+Protokol: HTTP/JSON (REST)
+
+**API (services) ⇄ Cache: redis-py**
+Protokol: RESP/TCP (Redis)
+
+*API (services) ⇄ DB: SQLAlchemy → SQLite**
+Protokol: SQL (lokalde, in-process bağlantı)
+
+*Agent orkestrasyonu: LangGraph içinde in-process çalışır.**
+*Düğümler arası iletişim, paylaşılan Python dict state üzerinden olur (Agent-to-Agent pattern, fakat aynı proses içinde; ağ üzerinden mesajlaşma yok).
+
+**LLM tool çağrıları: OpenAI tool/function-schema tarzı JSON şema tanımları kullanılır (docs/tool_schemas.*).**
 
 ## Prompt İşleme Adımları
 
@@ -238,6 +273,23 @@ curl -s http://localhost:8000/ask_unified \
 ```
 
 ---
+## UI Ozellikleri
+UI Özeti
+
+- Quick Analysis butonları: onaylı/seed cache’e gömülü sorular.
+
+- Sekmeler:
+
+  Tablo: satır önizlemesi
+  
+  SQL: yürütülen/önerilen sorgu
+  
+  Kaynaklar: sadece Policy RAG kaynak listesi (chat içinde “Kaynaklar:” bloğu gösterilmez)
+
+- Meta satırı: used_cache, use_web, want_sql, source
+
+- Geçmiş: Son 3 etkileşim session_state['exchanges'] ile tutulur.
+
 
 ## Lisans / Notlar
 
